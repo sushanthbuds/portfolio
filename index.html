@@ -4,519 +4,298 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Sushanth Buddhala — Data Analytics Engineer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-  :root {
-    --bg:        #0b0c0e;
-    --surface:   #13151a;
-    --surface2:  #1c1f27;
-    --border:    rgba(255,255,255,0.07);
-    --accent:    #e8c97a;
-    --accent2:   #7ab8e8;
-    --text:      #e2e0d8;
-    --muted:     #7a7870;
-    --serif:     'DM Serif Display', serif;
-    --mono:      'DM Mono', monospace;
-    --sans:      'Outfit', sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-  a { color: inherit; text-decoration: none; }
-  img { display: block; max-width: 100%; }
-
-  body::before {
-    content: '';
-    position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    opacity: 0.35;
-  }
-
-  .wrap { max-width: 900px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
-
-  /* ── Nav ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(11,12,14,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: 0.04em; }
-  .nav-links { display: flex; gap: 32px; }
-  .nav-links a { font-size: 13px; font-weight: 400; color: var(--muted); letter-spacing: 0.04em; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--text); }
-
-  /* ── Hero ── */
-  #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 56px; }
-  .hero-inner {
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 60px;
-    align-items: center;
-    padding: 80px 0 60px;
-  }
-  .hero-photo img {
-    width: 100%;
-    aspect-ratio: 3/4;
-    object-fit: cover;
-    border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.07);
-    display: block;
-  }
-  .hero-eyebrow {
-    font-family: var(--mono); font-size: 12px; color: var(--accent);
-    letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 24px;
-    opacity: 0; animation: fadeUp 0.7s ease forwards 0.1s;
-  }
-  .hero-name {
-    font-family: var(--serif); font-size: clamp(52px, 8vw, 90px);
-    line-height: 1.0; color: var(--text); margin-bottom: 24px;
-    opacity: 0; animation: fadeUp 0.7s ease forwards 0.25s;
-  }
-  .hero-name em { font-style: italic; color: var(--accent); }
-  .hero-tagline {
-    font-size: 18px; color: var(--muted); max-width: 520px;
-    margin-bottom: 40px; font-weight: 300;
-    opacity: 0; animation: fadeUp 0.7s ease forwards 0.4s;
-  }
-  .hero-links {
-    display: flex; gap: 16px; flex-wrap: wrap;
-    opacity: 0; animation: fadeUp 0.7s ease forwards 0.55s;
-  }
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 10px 22px; font-family: var(--mono); font-size: 13px;
-    border-radius: 4px; transition: all 0.2s; font-weight: 500;
-  }
-  .btn-primary { background: var(--accent); color: #0b0c0e; border: 1px solid var(--accent); }
-  .btn-primary:hover { background: #f0d88a; }
-  .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
-  .btn-ghost:hover { border-color: rgba(255,255,255,0.25); color: #fff; }
-  .hero-scroll {
-    margin-top: 80px; display: flex; align-items: center; gap: 12px;
-    font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em;
-    opacity: 0; animation: fadeUp 0.7s ease forwards 0.7s;
-  }
-  .hero-scroll-line { width: 40px; height: 1px; background: var(--muted); }
-
-  /* ── Section shell ── */
-  section { padding: 100px 0; }
-  .section-label { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 16px; }
-  .section-title { font-family: var(--serif); font-size: clamp(32px, 5vw, 48px); line-height: 1.1; margin-bottom: 48px; }
-
-  /* ── About ── */
-  #about { border-top: 1px solid var(--border); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
-  .about-text p { color: var(--muted); margin-bottom: 16px; font-size: 16px; }
-  .about-text p strong { color: var(--text); font-weight: 500; }
-  .about-meta { display: flex; flex-direction: column; gap: 20px; }
-  .meta-row { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-  .meta-row:last-child { border-bottom: none; }
-  .meta-key { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
-  .meta-val { font-size: 14px; color: var(--text); font-weight: 400; }
-
-  /* ── Skills ── */
-  #skills { border-top: 1px solid var(--border); }
-  .skills-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1px; background: var(--border); border: 1px solid var(--border);
-    border-radius: 8px; overflow: hidden;
-  }
-  .skill-cell { background: var(--surface); padding: 24px 20px; transition: background 0.2s; }
-  .skill-cell:hover { background: var(--surface2); }
-  .skill-cat { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
-  .skill-list { font-size: 14px; color: var(--muted); line-height: 1.9; }
-
-  /* ── Projects ── */
-  #projects { border-top: 1px solid var(--border); }
-  .projects-list { display: flex; flex-direction: column; gap: 2px; }
-  .project-card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-    padding: 36px 40px; display: grid; grid-template-columns: 1fr auto;
-    gap: 24px; align-items: start; transition: border-color 0.2s, background 0.2s;
-    cursor: pointer; text-decoration: none; color: inherit; margin-bottom: 12px;
-  }
-  .project-card:hover { border-color: rgba(232,201,122,0.35); background: var(--surface2); }
-  .project-number { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 10px; letter-spacing: 0.08em; }
-  .project-title { font-family: var(--serif); font-size: 22px; margin-bottom: 8px; line-height: 1.2; }
-  .project-desc { font-size: 14px; color: var(--muted); max-width: 520px; line-height: 1.7; margin-bottom: 20px; }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .tag { font-family: var(--mono); font-size: 11px; padding: 4px 10px; border-radius: 3px; background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); letter-spacing: 0.04em; }
-  .project-arrow { font-size: 22px; color: var(--muted); transition: color 0.2s, transform 0.2s; margin-top: 4px; }
-  .project-card:hover .project-arrow { color: var(--accent); transform: translate(3px, -3px); }
-
-  /* ── Experience ── */
-  #experience { border-top: 1px solid var(--border); }
-  .timeline { display: flex; flex-direction: column; }
-  .timeline-item { display: grid; grid-template-columns: 140px 1fr; gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--border); }
-  .timeline-item:last-child { border-bottom: none; }
-  .timeline-date { font-family: var(--mono); font-size: 12px; color: var(--muted); padding-top: 3px; }
-  .timeline-role { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
-  .timeline-org { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-bottom: 8px; }
-  .timeline-desc { font-size: 14px; color: var(--muted); }
-
-  /* ── Certifications ── */
-  #certifications { border-top: 1px solid var(--border); }
-  .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
-  .cert-card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-    padding: 20px 24px; display: flex; align-items: flex-start; gap: 14px;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .cert-card:hover { border-color: rgba(232,201,122,0.3); background: var(--surface2); }
-  .cert-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 5px; }
-  .cert-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; line-height: 1.4; }
-  .cert-issuer { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.06em; }
-
-  /* ── Contact ── */
-  #contact { border-top: 1px solid var(--border); text-align: center; }
-  .contact-title { font-family: var(--serif); font-size: clamp(36px, 6vw, 64px); margin-bottom: 16px; line-height: 1.1; }
-  .contact-sub { font-size: 16px; color: var(--muted); margin-bottom: 40px; }
-  .contact-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-
-  /* ── Footer ── */
-  footer { border-top: 1px solid var(--border); padding: 28px 0; text-align: center; }
-  footer p { font-family: var(--mono); font-size: 12px; color: var(--muted); }
-
-  /* ── Animations ── */
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  @media (max-width: 768px) {
-    .hero-inner {
-      grid-template-columns: 1fr;
-    }
-    .hero-photo {
-      order: -1;
-      max-width: 260px;
-      margin: 0 auto;
-      width: 100%;
-    }
-  }
-
-  /* ── Responsive ── */
-  @media (max-width: 640px) {
-    .wrap { padding: 0 20px; }
-    .about-grid { grid-template-columns: 1fr; gap: 36px; }
-    .project-card { grid-template-columns: 1fr; padding: 24px; }
-    .timeline-item { grid-template-columns: 1fr; gap: 4px; }
-    .nav-links { display: none; }
-  }
+:root{--bg:#09090b;--surface:#111114;--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);--text:#e8e6e1;--muted:#64615a;--accent:#c8f09a;--serif:'Instrument Serif',serif;--sans:'Instrument Sans',sans-serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden;cursor:none;}
+a{color:inherit;text-decoration:none;}
+#cursor{position:fixed;z-index:9999;pointer-events:none;width:10px;height:10px;border-radius:50%;background:var(--accent);transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s;}
+#cursor-ring{position:fixed;z-index:9998;pointer-events:none;width:36px;height:36px;border-radius:50%;border:1px solid rgba(200,240,154,0.4);transform:translate(-50%,-50%);transition:all 0.12s ease;}
+#canvas-bg{position:fixed;inset:0;z-index:0;pointer-events:none;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 56px;height:60px;display:flex;align-items:center;justify-content:space-between;transition:background 0.3s;}
+nav.scrolled{background:rgba(9,9,11,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--serif);font-size:clamp(13px,2.6vw,18px);font-style:italic;color:var(--accent);opacity:0;animation:fadeIn 0.6s ease forwards 0.8s;line-height:1.15;}
+.nav-links{display:flex;gap:8px;opacity:0;animation:fadeIn 0.6s ease forwards 1s;}
+.nav-links a{font-size:13px;color:var(--muted);padding:6px 14px;border-radius:100px;transition:color 0.2s,background 0.2s;}
+.nav-links a:hover{color:var(--text);background:rgba(255,255,255,0.05);}
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 56px 72px;border-bottom:1px solid var(--border);position:relative;z-index:1;}
+.hero-inner{max-width:1000px;width:100%;}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:36px;opacity:0;animation:slideRight 0.7s ease forwards 0.2s;}
+.hero-eyebrow-line{width:32px;height:1px;background:var(--accent);}
+.hero-name{font-family:var(--serif);font-size:clamp(72px,11vw,140px);line-height:0.88;letter-spacing:-0.02em;margin-bottom:36px;}
+.hero-name-line{display:block;overflow:hidden;}
+.hero-name-line span{display:block;transform:translateY(100%);animation:slideUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards;}
+.hero-name-line:nth-child(1) span{animation-delay:0.3s;}
+.hero-name-line:nth-child(2) span{animation-delay:0.45s;color:var(--accent);font-style:italic;}
+.hero-bottom{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;opacity:0;animation:fadeUp 0.7s ease forwards 0.8s;}
+.hero-sub{font-size:17px;color:var(--muted);line-height:1.7;max-width:400px;}
+.hero-right{display:flex;flex-direction:column;align-items:flex-end;gap:24px;}
+.hero-btns{display:flex;gap:10px;}
+.magnetic{position:relative;display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:100px;font-size:13px;font-weight:500;transition:all 0.2s;}
+.btn-primary-m{background:var(--accent);color:#09090b;}
+.btn-primary-m:hover{background:#d4f8a8;}
+.btn-ghost-m{border:1px solid var(--border2);color:var(--text);}
+.btn-ghost-m:hover{background:rgba(255,255,255,0.05);}
+.hero-stats{display:flex;gap:36px;}
+.hstat{text-align:right;}
+.hstat-num{font-family:var(--serif);font-size:36px;color:var(--accent);line-height:1;display:block;}
+.hstat-label{font-size:11px;color:var(--muted);margin-top:3px;}
+section{padding:120px 56px;border-bottom:1px solid var(--border);position:relative;z-index:1;}
+.sw{max-width:1000px;margin:0 auto;}
+.sl{font-size:11px;color:var(--accent);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:16px;}
+.st{font-family:var(--serif);font-size:clamp(40px,5vw,60px);line-height:1.05;margin-bottom:64px;}
+.st em{font-style:italic;color:var(--muted);}
+.about-cols{display:grid;grid-template-columns:1fr 1fr;gap:80px;}
+.ap{color:var(--muted);margin-bottom:16px;line-height:1.8;}
+.ap strong{color:var(--text);font-weight:500;}
+.alinks{display:flex;flex-direction:column;}
+.alink{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid var(--border);font-size:14px;transition:all 0.2s;position:relative;overflow:hidden;}
+.alink::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--accent);transition:width 0.3s ease;}
+.alink:hover::after{width:100%;}
+.alink:hover{color:var(--accent);padding-left:8px;}
+.alink:first-child{border-top:1px solid var(--border);}
+.alink-key{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;}
+.sk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.skc{background:var(--surface);padding:28px;transition:background 0.3s;}
+.skc:hover{background:#141418;}
+.skc-title{font-size:11px;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;}
+.ski{font-size:14px;color:var(--muted);padding:4px 0;display:flex;align-items:center;gap:10px;}
+.ski::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--border2);flex-shrink:0;}
+.pj-list{display:flex;flex-direction:column;}
+.pj{display:grid;grid-template-columns:1fr auto;gap:24px;padding:40px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:padding-left 0.4s cubic-bezier(0.16,1,0.3,1);position:relative;}
+.pj::before{content:'';position:absolute;left:-56px;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);transform-origin:top;}
+.pj:first-child{border-top:1px solid var(--border);}
+.pj:hover{padding-left:24px;}
+.pj:hover::before{transform:scaleY(1);}
+.pj-meta{display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+.pj-num{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--accent);}
+.pj-date{font-size:12px;color:var(--muted);}
+.pj-title{font-family:var(--serif);font-size:24px;margin-bottom:12px;line-height:1.2;transition:color 0.2s;}
+.pj:hover .pj-title{color:var(--accent);}
+.pj-desc{font-size:14px;color:var(--muted);max-width:560px;line-height:1.75;margin-bottom:18px;}
+.pj-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.pt{font-size:11px;padding:4px 12px;border-radius:100px;border:1px solid var(--border2);color:var(--muted);transition:all 0.2s;letter-spacing:0.04em;}
+.pj:hover .pt{border-color:rgba(200,240,154,0.2);color:rgba(200,240,154,0.7);}
+.pj-arrow{font-size:22px;color:var(--muted);transition:all 0.3s cubic-bezier(0.16,1,0.3,1);margin-top:4px;}
+.pj:hover .pj-arrow{color:var(--accent);transform:translate(6px,-6px);}
+#contact{border-bottom:none;text-align:center;padding-bottom:140px;}
+.ct-title{font-family:var(--serif);font-size:clamp(52px,9vw,110px);line-height:0.92;margin-bottom:28px;letter-spacing:-0.02em;}
+.ct-title em{font-style:italic;color:var(--accent);}
+.ct-sub{font-size:16px;color:var(--muted);margin-bottom:48px;}
+.ct-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+footer{padding:28px 56px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;}
+footer p{font-size:12px;color:var(--muted);}
+.footer-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-20px);}to{opacity:1;transform:translateX(0);}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:0.1s;}.reveal-delay-2{transition-delay:0.2s;}
+@media(max-width:768px){nav{padding:0 24px;}.nav-links{display:none;}#hero{padding:0 24px 56px;}section{padding:80px 24px;}.hero-bottom{grid-template-columns:1fr;}.hero-right{align-items:flex-start;}.about-cols{grid-template-columns:1fr;gap:36px;}.sk-grid{grid-template-columns:1fr 1fr;}.pj{grid-template-columns:1fr;}.pj::before{display:none;}footer{flex-direction:column;gap:12px;text-align:center;}#cursor,#cursor-ring{display:none;}body{cursor:auto;}}
 </style>
 </head>
 <body>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<canvas id="canvas-bg"></canvas>
 
-<!-- ── Nav ── -->
-<nav>
-  <div class="wrap">
-    <span class="nav-logo">sushanth.dev</span>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#certifications">Certs</a>
-      <a href="#contact">Contact</a>
-    </div>
+<nav id="navbar">
+  <span class="nav-logo">Sushanth Buddhala.</span>
+  <div class="nav-links">
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Work</a><a href="#contact">Contact</a>
   </div>
 </nav>
 
-<!-- ── Hero ── -->
 <section id="hero">
-  <div class="wrap">
-    <div class="hero-inner">
-      <div class="hero-content">
-        <p class="hero-eyebrow">// Data Analytics Engineer · M.S. George Mason University</p>
-        <h1 class="hero-name">Sushanth<br/><em>Buddhala.</em></h1>
-        <p class="hero-tagline">
-          Data Analytics Engineering graduate student with hands-on experience building SQL platforms, ETL pipelines, ML models, and interactive dashboards. I transform large, messy datasets into explainable, scalable insights using Python, SQL, and cloud tools.
-        </p>
-        <div class="hero-links">
-          <a href="#projects" class="btn btn-primary">View my projects →</a>
-          <a href="mailto:sushanthbuds@gmail.com" class="btn btn-ghost">Get in touch</a>
-          <a href="Sushanth_Buddhala_s_Resume.pdf" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Resume ↓</a>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="hero-eyebrow-line"></span>Data Analytics Engineer · Open to roles</div>
+    <h1 class="hero-name">
+      <span class="hero-name-line"><span>Sushanth</span></span>
+      <span class="hero-name-line"><span>Buddhala.</span></span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-sub">Data Analytics Engineering graduate student with hands-on experience building SQL platforms, ETL pipelines, ML models, and interactive dashboards. I transform large, messy datasets into explainable, scalable insights using Python, SQL, and cloud tools.</p>
+      <div class="hero-right">
+        <div class="hero-btns">
+          <a href="#projects" class="magnetic btn-primary-m">View Work →</a>
+          <a href="mailto:sushanthbuds@gmail.com" class="magnetic btn-ghost-m">Get in Touch</a>
         </div>
-        <div class="hero-scroll">
-          <span class="hero-scroll-line"></span>
-          <span>scroll to explore</span>
+        <div class="hero-stats">
+          <div class="hstat"><span class="hstat-num" data-target="395">0</span><span class="hstat-label">K+ Records</span></div>
+          <div class="hstat"><span class="hstat-num" data-target="85">0</span><span class="hstat-label">% Accuracy</span></div>
+          <div class="hstat"><span class="hstat-num" data-target="3">0</span><span class="hstat-label">Certifications</span></div>
         </div>
-      </div>
-      <div class="hero-photo">
-        <img src="My photo.jpeg" alt="Sushanth Buddhala"/>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── About ── -->
 <section id="about">
-  <div class="wrap">
-    <p class="section-label reveal">// 01 — About</p>
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p>
-          I'm a <strong>Data Analytics Engineering graduate student at George Mason University</strong>,
-          with hands-on experience building SQL-driven analytics platforms, ETL pipelines,
-          machine learning models, and interactive dashboards.
-        </p>
-        <p>
-          I specialize in <strong>Python, SQL, and cloud-based data tools</strong> —
-          with a strong foundation in statistical modeling, predictive analytics, and data engineering.
-          My focus is on delivering explainable, scalable analytics solutions that non-technical
-          users can actually act on.
-        </p>
-        <p>
-          Previously completed a <strong>B.S. in Computer Science Engineering</strong> from Gokaraju Rangaraju
-          Institute of Engineering and Technology in Hyderabad, India.
-        </p>
-      </div>
-      <div class="about-meta reveal">
-        <div class="meta-row">
-          <span class="meta-key">Location</span>
-          <span class="meta-val">Fairfax, Virginia</span>
-        </div>
-        <div class="meta-row">
-          <span class="meta-key">Degree</span>
-          <span class="meta-val">M.S. Data Analytics Eng.</span>
-        </div>
-        <div class="meta-row">
-          <span class="meta-key">University</span>
-          <span class="meta-val">George Mason University</span>
-        </div>
-        <div class="meta-row">
-          <span class="meta-key">Availability</span>
-          <span class="meta-val">Open to roles</span>
-        </div>
-        <div class="meta-row">
-          <span class="meta-key">GitHub</span>
-          <span class="meta-val"><a href="https://github.com/sushanthbuds" target="_blank" style="color:var(--accent2)">github.com/sushanthbuds</a></span>
-        </div>
-        <div class="meta-row">
-          <span class="meta-key">LinkedIn</span>
-          <span class="meta-val"><a href="https://linkedin.com/in/sushanth-buddhala-3357a5267" target="_blank" style="color:var(--accent2)">linkedin.com/in/sushanth-buddhala</a></span>
+  <div class="sw">
+    <p class="sl reveal">// About</p>
+    <h2 class="st reveal">Building systems that<br/><em>scale and explain.</em></h2>
+    <div class="about-cols">
+      <div class="reveal reveal-delay-1"><p class="ap">I'm a <strong>Data Analytics Engineering graduate student at George Mason University</strong>, building SQL-driven analytics platforms, ETL pipelines, machine learning models, and RAG systems.</p><p class="ap">I specialize in <strong>Python, SQL, and cloud tools</strong> — delivering explainable, scalable analytics that non-technical users can act on.</p><p class="ap">Previously completed a <strong>B.S. in Computer Science Engineering</strong> at GRIET, Hyderabad, India.</p></div>
+      <div class="reveal reveal-delay-2">
+        <div class="alinks">
+          <a href="mailto:sushanthbuds@gmail.com" class="alink"><span class="alink-key">Email</span><span>sushanthbuds@gmail.com ↗</span></a>
+          <a href="https://github.com/sushanthbuds" target="_blank" class="alink"><span class="alink-key">GitHub</span><span>github.com/sushanthbuds ↗</span></a>
+          <a href="https://linkedin.com/in/sushanth-buddhala-3357a5267" target="_blank" class="alink"><span class="alink-key">LinkedIn</span><span>sushanth-buddhala ↗</span></a>
+          <div class="alink"><span class="alink-key">Location</span><span>Fairfax, Virginia</span></div>
+          <div class="alink"><span class="alink-key">Status</span><span style="color:var(--accent)">● Open to roles</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Skills ── -->
 <section id="skills">
-  <div class="wrap">
-    <p class="section-label reveal">// 02 — Skills</p>
-    <h2 class="section-title reveal">What I work with</h2>
-    <div class="skills-grid reveal">
-      <div class="skill-cell">
-        <p class="skill-cat">Languages</p>
-        <p class="skill-list">Python<br/>SQL<br/>R<br/>DAX</p>
-      </div>
-      <div class="skill-cell">
-        <p class="skill-cat">Data & ML</p>
-        <p class="skill-list">Pandas<br/>Scikit-learn<br/>Machine Learning<br/>ETL Pipelines</p>
-      </div>
-      <div class="skill-cell">
-        <p class="skill-cat">Databases</p>
-        <p class="skill-list">SQLite<br/>Snowflake<br/>Databricks<br/>Window Functions</p>
-      </div>
-      <div class="skill-cell">
-        <p class="skill-cat">AI & NLP</p>
-        <p class="skill-list">RAG Pipelines<br/>OpenAI Embeddings<br/>FastAPI<br/>LLM Integration</p>
-      </div>
-      <div class="skill-cell">
-        <p class="skill-cat">Visualization & Cloud</p>
-        <p class="skill-list">Power BI<br/>Tableau<br/>AWS<br/>Excel</p>
-      </div>
-      <div class="skill-cell">
-        <p class="skill-cat">Concepts</p>
-        <p class="skill-list">Statistical Modeling<br/>Predictive Analytics<br/>Data Storytelling<br/>Data Cleaning</p>
-      </div>
+  <div class="sw">
+    <p class="sl reveal">// Skills</p>
+    <h2 class="st reveal">Technologies<br/><em>I work with</em></h2>
+    <div class="sk-grid reveal">
+      <div class="skc"><p class="skc-title">Languages</p><div class="ski">Python</div><div class="ski">SQL</div><div class="ski">R</div><div class="ski">DAX</div></div>
+      <div class="skc"><p class="skc-title">Data & ML</p><div class="ski">Pandas</div><div class="ski">Scikit-learn</div><div class="ski">ETL Pipelines</div><div class="ski">Unsupervised Learning</div></div>
+      <div class="skc"><p class="skc-title">Databases</p><div class="ski">SQLite</div><div class="ski">Snowflake</div><div class="ski">Databricks</div><div class="ski">Window Functions</div></div>
+      <div class="skc"><p class="skc-title">AI & NLP</p><div class="ski">RAG Pipelines</div><div class="ski">OpenAI Embeddings</div><div class="ski">FastAPI</div><div class="ski">LLM Integration</div></div>
+      <div class="skc"><p class="skc-title">Visualization & Cloud</p><div class="ski">Power BI</div><div class="ski">Tableau</div><div class="ski">AWS</div><div class="ski">Excel</div></div>
+      <div class="skc"><p class="skc-title">Concepts</p><div class="ski">Statistical Modeling</div><div class="ski">Predictive Analytics</div><div class="ski">Data Storytelling</div><div class="ski">Data Cleaning</div></div>
     </div>
   </div>
 </section>
 
-<!-- ── Projects ── -->
 <section id="projects">
-  <div class="wrap">
-    <p class="section-label reveal">// 03 — Projects</p>
-    <h2 class="section-title reveal">Things I've built</h2>
-    <div class="projects-list">
-
-      <a href="https://github.com/sushanthbuds/housing-migration" target="_blank" class="project-card reveal">
-        <div>
-          <p class="project-number">01 /</p>
-          <h3 class="project-title">Housing Migration Analytics Platform</h3>
-          <p class="project-desc">
-            Designed and implemented a normalized SQLite analytics database containing 395K+ U.S. housing,
-            migration, AHS, and CHAS records. Built a schema-aware RAG pipeline using OpenAI embeddings
-            to generate safe, explainable SQL — preventing hallucinations and enabling non-technical
-            users to safely explore complex housing data without writing SQL.
-          </p>
-          <div class="project-tags">
-            <span class="tag">SQL</span>
-            <span class="tag">RAG Pipeline</span>
-            <span class="tag">OpenAI Embeddings</span>
-            <span class="tag">SQLite</span>
-            <span class="tag">Python</span>
-          </div>
-        </div>
-        <div class="project-arrow">↗</div>
+  <div class="sw">
+    <p class="sl reveal">// Work</p>
+    <h2 class="st reveal">Things<br/><em>I've built</em></h2>
+    <div class="pj-list">
+      <a href="https://github.com/sushanthbuds" target="_blank" class="pj reveal">
+        <div><div class="pj-meta"><span class="pj-num">01.</span><span class="pj-date">Nov 2025 – Jan 2026</span></div><h3 class="pj-title">Housing Migration Analytics Platform</h3><p class="pj-desc">Normalized SQLite database with 395K+ U.S. housing, migration, AHS, and CHAS records. Schema-aware RAG pipeline using OpenAI embeddings generating safe, explainable SQL for non-technical users.</p><div class="pj-tags"><span class="pt">SQL</span><span class="pt">RAG</span><span class="pt">OpenAI Embeddings</span><span class="pt">SQLite</span><span class="pt">Python</span></div></div>
+        <div class="pj-arrow">↗</div>
       </a>
-
-      <a href="https://github.com/sushanthbuds/pavement-analysis" target="_blank" class="project-card reveal">
-        <div>
-          <p class="project-number">02 /</p>
-          <h3 class="project-title">Predictive Pavement Condition Analysis</h3>
-          <p class="project-desc">
-            Processed and analyzed 2,000+ pavement condition records using imputation, normalization,
-            and outlier handling. Applied K-Means clustering to identify three deterioration patterns
-            including faster degradation in high-traffic environments. Best performance achieved with
-            Gradient Boosting (RMSE ≈ 890), enabling proactive infrastructure maintenance planning.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Gradient Boosting</span>
-            <span class="tag">K-Means</span>
-            <span class="tag">Scikit-learn</span>
-            <span class="tag">Big Data</span>
-            <span class="tag">Python</span>
-          </div>
-        </div>
-        <div class="project-arrow">↗</div>
+      <a href="https://github.com/sushanthbuds" target="_blank" class="pj reveal reveal-delay-1">
+        <div><div class="pj-meta"><span class="pj-num">02.</span><span class="pj-date">Jan 2025 – May 2025</span></div><h3 class="pj-title">Predictive Pavement Condition Analysis</h3><p class="pj-desc">2,000+ pavement records processed. K-Means clustering identified 3 deterioration patterns. Gradient Boosting achieved best performance (RMSE ≈ 890).</p><div class="pj-tags"><span class="pt">Gradient Boosting</span><span class="pt">K-Means</span><span class="pt">Scikit-learn</span><span class="pt">Python</span></div></div>
+        <div class="pj-arrow">↗</div>
       </a>
-
-      <a href="https://github.com/sushanthbuds/obesity-analysis" target="_blank" class="project-card reveal">
-        <div>
-          <p class="project-number">03 /</p>
-          <h3 class="project-title">Obesity Level Analysis</h3>
-          <p class="project-desc">
-            Conducted EDA on 2,000+ records to uncover relationships between BMI, lifestyle factors,
-            and family history. Developed and validated Logistic Regression, Decision Tree, SVM, and
-            Clustering models — achieving up to 85% accuracy with SVM. Findings translated into
-            actionable public-health insights around diet, physical activity, and family history.
-          </p>
-          <div class="project-tags">
-            <span class="tag">SVM</span>
-            <span class="tag">Classification</span>
-            <span class="tag">Logistic Regression</span>
-            <span class="tag">EDA</span>
-            <span class="tag">Pandas</span>
-          </div>
-        </div>
-        <div class="project-arrow">↗</div>
+      <a href="https://github.com/sushanthbuds" target="_blank" class="pj reveal reveal-delay-2">
+        <div><div class="pj-meta"><span class="pj-num">03.</span><span class="pj-date">Aug 2024 – Nov 2024</span></div><h3 class="pj-title">Obesity Level Analysis</h3><p class="pj-desc">EDA on 2,000+ records. SVM, Logistic Regression, Decision Tree — 85% accuracy with SVM. Diet, physical activity, and family history identified as key predictors.</p><div class="pj-tags"><span class="pt">SVM</span><span class="pt">Classification</span><span class="pt">EDA</span><span class="pt">Pandas</span></div></div>
+        <div class="pj-arrow">↗</div>
       </a>
-
     </div>
   </div>
 </section>
 
-<!-- ── Experience & Education ── -->
-<section id="experience">
-  <div class="wrap">
-    <p class="section-label reveal">// 04 — Background</p>
-    <h2 class="section-title reveal">Experience &amp; Education</h2>
-    <div class="timeline">
-
-      <div class="timeline-item reveal">
-        <div class="timeline-date">Current</div>
-        <div>
-          <p class="timeline-role">M.S. in Data Analytics Engineering</p>
-          <p class="timeline-org">George Mason University · Fairfax, VA</p>
-          <p class="timeline-desc">Coursework includes Analytics & Big Data, Principles of Data Management & Mining, Visualization for Analytics, Interpretable Machine Learning, Data Mining for Business Analytics, and Big Data Essentials.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-date">Prior</div>
-        <div>
-          <p class="timeline-role">B.S. in Computer Science Engineering</p>
-          <p class="timeline-org">GRIET · Hyderabad, India</p>
-          <p class="timeline-desc">Foundation in computer science, software development, and engineering principles — the basis for advanced graduate-level data analytics and machine learning work.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-date">Ongoing</div>
-        <div>
-          <p class="timeline-role">Independent Projects &amp; Research</p>
-          <p class="timeline-org">Python · SQL · ML · Cloud · RAG</p>
-          <p class="timeline-desc">Continuous hands-on work across SQL analytics platforms, ML pipelines, RAG systems using OpenAI embeddings, and cloud tools including AWS, Snowflake, and Databricks.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ── Certifications ── -->
-<section id="certifications">
-  <div class="wrap">
-    <p class="section-label reveal">// 05 — Certifications</p>
-    <h2 class="section-title reveal">Professional Certificates</h2>
-    <div class="certs-grid reveal">
-      <div class="cert-card">
-        <div class="cert-dot"></div>
-        <div>
-          <p class="cert-name">IBM Data Analyst Professional Certificate</p>
-          <p class="cert-issuer">Coursera · IBM</p>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-dot"></div>
-        <div>
-          <p class="cert-name">AWS Cloud Practitioner</p>
-          <p class="cert-issuer">Amazon Web Services</p>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-dot"></div>
-        <div>
-          <p class="cert-name">Generative AI for Data Analytics</p>
-          <p class="cert-issuer">Coursera</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Contact ── -->
 <section id="contact">
-  <div class="wrap">
-    <p class="section-label reveal" style="text-align:center">// 06 — Contact</p>
-    <h2 class="contact-title reveal">Let's work<br/><em style="font-family:var(--serif);font-style:italic;color:var(--accent)">together.</em></h2>
-    <p class="contact-sub reveal">Open to full-time roles, internships, and interesting data problems.</p>
-    <div class="contact-links reveal">
-      <a href="mailto:sushanthbuds@gmail.com" class="btn btn-primary">sushanthbuds@gmail.com</a>
-      <a href="https://linkedin.com/in/sushanth-buddhala-3357a5267" target="_blank" class="btn btn-ghost">LinkedIn</a>
-      <a href="https://github.com/sushanthbuds" target="_blank" class="btn btn-ghost">GitHub</a>
+  <div class="sw">
+    <h2 class="ct-title reveal">Got something<br/><em>in mind?</em></h2>
+    <p class="ct-sub reveal">Open to full-time roles, internships, and interesting data problems.</p>
+    <div class="ct-btns reveal">
+      <a href="mailto:sushanthbuds@gmail.com" class="magnetic btn-primary-m">sushanthbuds@gmail.com</a>
+      <a href="https://linkedin.com/in/sushanth-buddhala-3357a5267" target="_blank" class="magnetic btn-ghost-m">LinkedIn ↗</a>
+      <a href="https://github.com/sushanthbuds" target="_blank" class="magnetic btn-ghost-m">GitHub ↗</a>
     </div>
   </div>
 </section>
 
-<!-- ── Footer ── -->
 <footer>
-  <div class="wrap">
-    <p>Built by Sushanth Buddhala · Fairfax, VA · 2025 · All rights reserved</p>
-  </div>
+  <p>Designed & built by Sushanth Buddhala</p>
+  <div class="footer-dot"></div>
+  <p>© 2025 · Fairfax, Virginia</p>
 </footer>
 
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+/* Cursor */
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+(function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
+
+/* Nav */
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>40));
+
+/* Reveal */
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* Counters */
+function animCount(el){
+  const t=parseInt(el.dataset.target),d=1800,s=performance.now();
+  (function u(n){const p=Math.min((n-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*t);if(p<1)requestAnimationFrame(u);})(s);
+}
+const cobs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){animCount(x.target);cobs.unobserve(x.target);}}),{threshold:0.5});
+document.querySelectorAll('.hstat-num[data-target]').forEach(el=>cobs.observe(el));
+
+/* Magnetic */
+document.querySelectorAll('.magnetic').forEach(b=>{
+  b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;b.style.transform=`translate(${x*0.18}px,${y*0.18}px)`;});
+  b.addEventListener('mouseleave',()=>b.style.transform='');
+});
+
+/* ── NEURAL NETWORK PARTICLES ── */
+const canvas=document.getElementById('canvas-bg');
+const ctx=canvas.getContext('2d');
+let W,H,particles=[];
+const PARTICLE_COUNT=90,MAX_DIST=150,ACCENT='rgba(200,240,154,';
+
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight;}
+resize();
+window.addEventListener('resize',()=>{resize();initParticles();});
+
+class Particle{
+  constructor(){this.reset();}
+  reset(){
+    this.x=Math.random()*W;this.y=Math.random()*H;
+    this.vx=(Math.random()-0.5)*0.4;this.vy=(Math.random()-0.5)*0.4;
+    this.r=Math.random()*2+1;this.alpha=Math.random()*0.5+0.2;
+  }
+  update(){
+    this.x+=this.vx;this.y+=this.vy;
+    if(this.x<0||this.x>W)this.vx*=-1;
+    if(this.y<0||this.y>H)this.vy*=-1;
+  }
+  draw(){
+    ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle=ACCENT+this.alpha+')';ctx.fill();
+  }
+}
+
+function initParticles(){particles=Array.from({length:PARTICLE_COUNT},()=>new Particle());}
+initParticles();
+
+let mouseX=W/2,mouseY=H/2;
+document.addEventListener('mousemove',e=>{mouseX=e.clientX;mouseY=e.clientY;});
+
+function drawFrame(){
+  ctx.clearRect(0,0,W,H);
+  particles.forEach(p=>p.update());
+
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<MAX_DIST){
+        const alpha=0.15*(1-dist/MAX_DIST);
+        ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);
+        ctx.strokeStyle=ACCENT+alpha+')';ctx.lineWidth=0.8;ctx.stroke();
+      }
+    }
+    const mdx=particles[i].x-mouseX,mdy=particles[i].y-mouseY;
+    const mdist=Math.sqrt(mdx*mdx+mdy*mdy);
+    if(mdist<180){
+      const alpha=0.4*(1-mdist/180);
+      ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(mouseX,mouseY);
+      ctx.strokeStyle=ACCENT+alpha+')';ctx.lineWidth=1;ctx.stroke();
+    }
+    particles[i].draw();
+  }
+  requestAnimationFrame(drawFrame);
+}
+drawFrame();
 </script>
 </body>
 </html>
