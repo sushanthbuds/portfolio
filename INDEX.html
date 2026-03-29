@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sushanth Buddhala — Data Analytics Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg:        #0b0c0e;
+    --surface:   #13151a;
+    --surface2:  #1c1f27;
+    --border:    rgba(255,255,255,0.07);
+    --accent:    #e8c97a;
+    --accent2:   #7ab8e8;
+    --text:      #e2e0d8;
+    --muted:     #7a7870;
+    --serif:     'DM Serif Display', serif;
+    --mono:      'DM Mono', monospace;
+    --sans:      'Outfit', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.35;
+  }
+
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+  /* ── Nav ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(11,12,14,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: 0.04em; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { font-size: 13px; font-weight: 400; color: var(--muted); letter-spacing: 0.04em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ── Hero ── */
+  #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 56px; }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 60px;
+    align-items: center;
+    padding: 80px 0 60px;
+  }
+  .hero-photo img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.07);
+    display: block;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 12px; color: var(--accent);
+    letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 24px;
+    opacity: 0; animation: fadeUp 0.7s ease forwards 0.1s;
+  }
+  .hero-name {
+    font-family: var(--serif); font-size: clamp(52px, 8vw, 90px);
+    line-height: 1.0; color: var(--text); margin-bottom: 24px;
+    opacity: 0; animation: fadeUp 0.7s ease forwards 0.25s;
+  }
+  .hero-name em { font-style: italic; color: var(--accent); }
+  .hero-tagline {
+    font-size: 18px; color: var(--muted); max-width: 520px;
+    margin-bottom: 40px; font-weight: 300;
+    opacity: 0; animation: fadeUp 0.7s ease forwards 0.4s;
+  }
+  .hero-links {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.7s ease forwards 0.55s;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 22px; font-family: var(--mono); font-size: 13px;
+    border-radius: 4px; transition: all 0.2s; font-weight: 500;
+  }
+  .btn-primary { background: var(--accent); color: #0b0c0e; border: 1px solid var(--accent); }
+  .btn-primary:hover { background: #f0d88a; }
+  .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.25); color: #fff; }
+  .hero-scroll {
+    margin-top: 80px; display: flex; align-items: center; gap: 12px;
+    font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em;
+    opacity: 0; animation: fadeUp 0.7s ease forwards 0.7s;
+  }
+  .hero-scroll-line { width: 40px; height: 1px; background: var(--muted); }
+
+  /* ── Section shell ── */
+  section { padding: 100px 0; }
+  .section-label { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 16px; }
+  .section-title { font-family: var(--serif); font-size: clamp(32px, 5vw, 48px); line-height: 1.1; margin-bottom: 48px; }
+
+  /* ── About ── */
+  #about { border-top: 1px solid var(--border); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .about-text p { color: var(--muted); margin-bottom: 16px; font-size: 16px; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-meta { display: flex; flex-direction: column; gap: 20px; }
+  .meta-row { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  .meta-row:last-child { border-bottom: none; }
+  .meta-key { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .meta-val { font-size: 14px; color: var(--text); font-weight: 400; }
+
+  /* ── Skills ── */
+  #skills { border-top: 1px solid var(--border); }
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1px; background: var(--border); border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden;
+  }
+  .skill-cell { background: var(--surface); padding: 24px 20px; transition: background 0.2s; }
+  .skill-cell:hover { background: var(--surface2); }
+  .skill-cat { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+  .skill-list { font-size: 14px; color: var(--muted); line-height: 1.9; }
+
+  /* ── Projects ── */
+  #projects { border-top: 1px solid var(--border); }
+  .projects-list { display: flex; flex-direction: column; gap: 2px; }
+  .project-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 36px 40px; display: grid; grid-template-columns: 1fr auto;
+    gap: 24px; align-items: start; transition: border-color 0.2s, background 0.2s;
+    cursor: pointer; text-decoration: none; color: inherit; margin-bottom: 12px;
+  }
+  .project-card:hover { border-color: rgba(232,201,122,0.35); background: var(--surface2); }
+  .project-number { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 10px; letter-spacing: 0.08em; }
+  .project-title { font-family: var(--serif); font-size: 22px; margin-bottom: 8px; line-height: 1.2; }
+  .project-desc { font-size: 14px; color: var(--muted); max-width: 520px; line-height: 1.7; margin-bottom: 20px; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { font-family: var(--mono); font-size: 11px; padding: 4px 10px; border-radius: 3px; background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); letter-spacing: 0.04em; }
+  .project-arrow { font-size: 22px; color: var(--muted); transition: color 0.2s, transform 0.2s; margin-top: 4px; }
+  .project-card:hover .project-arrow { color: var(--accent); transform: translate(3px, -3px); }
+
+  /* ── Experience ── */
+  #experience { border-top: 1px solid var(--border); }
+  .timeline { display: flex; flex-direction: column; }
+  .timeline-item { display: grid; grid-template-columns: 140px 1fr; gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-date { font-family: var(--mono); font-size: 12px; color: var(--muted); padding-top: 3px; }
+  .timeline-role { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+  .timeline-org { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-bottom: 8px; }
+  .timeline-desc { font-size: 14px; color: var(--muted); }
+
+  /* ── Certifications ── */
+  #certifications { border-top: 1px solid var(--border); }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+  .cert-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 20px 24px; display: flex; align-items: flex-start; gap: 14px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .cert-card:hover { border-color: rgba(232,201,122,0.3); background: var(--surface2); }
+  .cert-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 5px; }
+  .cert-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; line-height: 1.4; }
+  .cert-issuer { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.06em; }
+
+  /* ── Contact ── */
+  #contact { border-top: 1px solid var(--border); text-align: center; }
+  .contact-title { font-family: var(--serif); font-size: clamp(36px, 6vw, 64px); margin-bottom: 16px; line-height: 1.1; }
+  .contact-sub { font-size: 16px; color: var(--muted); margin-bottom: 40px; }
+  .contact-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  /* ── Footer ── */
+  footer { border-top: 1px solid var(--border); padding: 28px 0; text-align: center; }
+  footer p { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+  /* ── Animations ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
+    .hero-photo {
+      order: -1;
+      max-width: 260px;
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .wrap { padding: 0 20px; }
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    .project-card { grid-template-columns: 1fr; padding: 24px; }
+    .timeline-item { grid-template-columns: 1fr; gap: 4px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav>
+  <div class="wrap">
+    <span class="nav-logo">sushanth.dev</span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#certifications">Certs</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="hero-eyebrow">// Data Analytics Engineer · M.S. George Mason University</p>
+        <h1 class="hero-name">Sushanth<br/><em>Buddhala.</em></h1>
+        <p class="hero-tagline">
+          Data Analytics Engineering graduate student with hands-on experience building SQL platforms, ETL pipelines, ML models, and interactive dashboards. I transform large, messy datasets into explainable, scalable insights using Python, SQL, and cloud tools.
+        </p>
+        <div class="hero-links">
+          <a href="#projects" class="btn btn-primary">View my projects →</a>
+          <a href="mailto:sushanthbuds@gmail.com" class="btn btn-ghost">Get in touch</a>
+          <a href="Sushanth_Buddhala_s_Resume.pdf" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Resume ↓</a>
+        </div>
+        <div class="hero-scroll">
+          <span class="hero-scroll-line"></span>
+          <span>scroll to explore</span>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="My photo.jpeg" alt="Sushanth Buddhala"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ── -->
+<section id="about">
+  <div class="wrap">
+    <p class="section-label reveal">// 01 — About</p>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          I'm a <strong>Data Analytics Engineering graduate student at George Mason University</strong>,
+          with hands-on experience building SQL-driven analytics platforms, ETL pipelines,
+          machine learning models, and interactive dashboards.
+        </p>
+        <p>
+          I specialize in <strong>Python, SQL, and cloud-based data tools</strong> —
+          with a strong foundation in statistical modeling, predictive analytics, and data engineering.
+          My focus is on delivering explainable, scalable analytics solutions that non-technical
+          users can actually act on.
+        </p>
+        <p>
+          Previously completed a <strong>B.S. in Computer Science Engineering</strong> from Gokaraju Rangaraju
+          Institute of Engineering and Technology in Hyderabad, India.
+        </p>
+      </div>
+      <div class="about-meta reveal">
+        <div class="meta-row">
+          <span class="meta-key">Location</span>
+          <span class="meta-val">Fairfax, Virginia</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-key">Degree</span>
+          <span class="meta-val">M.S. Data Analytics Eng.</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-key">University</span>
+          <span class="meta-val">George Mason University</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-key">Availability</span>
+          <span class="meta-val">Open to roles</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-key">GitHub</span>
+          <span class="meta-val"><a href="https://github.com/sushanthbuds" target="_blank" style="color:var(--accent2)">github.com/sushanthbuds</a></span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-key">LinkedIn</span>
+          <span class="meta-val"><a href="https://linkedin.com/in/sushanth-buddhala-3357a5267" target="_blank" style="color:var(--accent2)">linkedin.com/in/sushanth-buddhala</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Skills ── -->
+<section id="skills">
+  <div class="wrap">
+    <p class="section-label reveal">// 02 — Skills</p>
+    <h2 class="section-title reveal">What I work with</h2>
+    <div class="skills-grid reveal">
+      <div class="skill-cell">
+        <p class="skill-cat">Languages</p>
+        <p class="skill-list">Python<br/>SQL<br/>R<br/>DAX</p>
+      </div>
+      <div class="skill-cell">
+        <p class="skill-cat">Data & ML</p>
+        <p class="skill-list">Pandas<br/>Scikit-learn<br/>Machine Learning<br/>ETL Pipelines</p>
+      </div>
+      <div class="skill-cell">
+        <p class="skill-cat">Databases</p>
+        <p class="skill-list">SQLite<br/>Snowflake<br/>Databricks<br/>Window Functions</p>
+      </div>
+      <div class="skill-cell">
+        <p class="skill-cat">AI & NLP</p>
+        <p class="skill-list">RAG Pipelines<br/>OpenAI Embeddings<br/>FastAPI<br/>LLM Integration</p>
+      </div>
+      <div class="skill-cell">
+        <p class="skill-cat">Visualization & Cloud</p>
+        <p class="skill-list">Power BI<br/>Tableau<br/>AWS<br/>Excel</p>
+      </div>
+      <div class="skill-cell">
+        <p class="skill-cat">Concepts</p>
+        <p class="skill-list">Statistical Modeling<br/>Predictive Analytics<br/>Data Storytelling<br/>Data Cleaning</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Projects ── -->
+<section id="projects">
+  <div class="wrap">
+    <p class="section-label reveal">// 03 — Projects</p>
+    <h2 class="section-title reveal">Things I've built</h2>
+    <div class="projects-list">
+
+      <a href="https://github.com/sushanthbuds/housing-migration" target="_blank" class="project-card reveal">
+        <div>
+          <p class="project-number">01 /</p>
+          <h3 class="project-title">Housing Migration Analytics Platform</h3>
+          <p class="project-desc">
+            Designed and implemented a normalized SQLite analytics database containing 395K+ U.S. housing,
+            migration, AHS, and CHAS records. Built a schema-aware RAG pipeline using OpenAI embeddings
+            to generate safe, explainable SQL — preventing hallucinations and enabling non-technical
+            users to safely explore complex housing data without writing SQL.
+          </p>
+          <div class="project-tags">
+            <span class="tag">SQL</span>
+            <span class="tag">RAG Pipeline</span>
+            <span class="tag">OpenAI Embeddings</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">Python</span>
+          </div>
+        </div>
+        <div class="project-arrow">↗</div>
+      </a>
+
+      <a href="https://github.com/sushanthbuds/pavement-analysis" target="_blank" class="project-card reveal">
+        <div>
+          <p class="project-number">02 /</p>
+          <h3 class="project-title">Predictive Pavement Condition Analysis</h3>
+          <p class="project-desc">
+            Processed and analyzed 2,000+ pavement condition records using imputation, normalization,
+            and outlier handling. Applied K-Means clustering to identify three deterioration patterns
+            including faster degradation in high-traffic environments. Best performance achieved with
+            Gradient Boosting (RMSE ≈ 890), enabling proactive infrastructure maintenance planning.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Gradient Boosting</span>
+            <span class="tag">K-Means</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">Big Data</span>
+            <span class="tag">Python</span>
+          </div>
+        </div>
+        <div class="project-arrow">↗</div>
+      </a>
+
+      <a href="https://github.com/sushanthbuds/obesity-analysis" target="_blank" class="project-card reveal">
+        <div>
+          <p class="project-number">03 /</p>
+          <h3 class="project-title">Obesity Level Analysis</h3>
+          <p class="project-desc">
+            Conducted EDA on 2,000+ records to uncover relationships between BMI, lifestyle factors,
+            and family history. Developed and validated Logistic Regression, Decision Tree, SVM, and
+            Clustering models — achieving up to 85% accuracy with SVM. Findings translated into
+            actionable public-health insights around diet, physical activity, and family history.
+          </p>
+          <div class="project-tags">
+            <span class="tag">SVM</span>
+            <span class="tag">Classification</span>
+            <span class="tag">Logistic Regression</span>
+            <span class="tag">EDA</span>
+            <span class="tag">Pandas</span>
+          </div>
+        </div>
+        <div class="project-arrow">↗</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Experience & Education ── -->
+<section id="experience">
+  <div class="wrap">
+    <p class="section-label reveal">// 04 — Background</p>
+    <h2 class="section-title reveal">Experience &amp; Education</h2>
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Current</div>
+        <div>
+          <p class="timeline-role">M.S. in Data Analytics Engineering</p>
+          <p class="timeline-org">George Mason University · Fairfax, VA</p>
+          <p class="timeline-desc">Coursework includes Analytics & Big Data, Principles of Data Management & Mining, Visualization for Analytics, Interpretable Machine Learning, Data Mining for Business Analytics, and Big Data Essentials.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Prior</div>
+        <div>
+          <p class="timeline-role">B.S. in Computer Science Engineering</p>
+          <p class="timeline-org">GRIET · Hyderabad, India</p>
+          <p class="timeline-desc">Foundation in computer science, software development, and engineering principles — the basis for advanced graduate-level data analytics and machine learning work.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Ongoing</div>
+        <div>
+          <p class="timeline-role">Independent Projects &amp; Research</p>
+          <p class="timeline-org">Python · SQL · ML · Cloud · RAG</p>
+          <p class="timeline-desc">Continuous hands-on work across SQL analytics platforms, ML pipelines, RAG systems using OpenAI embeddings, and cloud tools including AWS, Snowflake, and Databricks.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Certifications ── -->
+<section id="certifications">
+  <div class="wrap">
+    <p class="section-label reveal">// 05 — Certifications</p>
+    <h2 class="section-title reveal">Professional Certificates</h2>
+    <div class="certs-grid reveal">
+      <div class="cert-card">
+        <div class="cert-dot"></div>
+        <div>
+          <p class="cert-name">IBM Data Analyst Professional Certificate</p>
+          <p class="cert-issuer">Coursera · IBM</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-dot"></div>
+        <div>
+          <p class="cert-name">AWS Cloud Practitioner</p>
+          <p class="cert-issuer">Amazon Web Services</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-dot"></div>
+        <div>
+          <p class="cert-name">Generative AI for Data Analytics</p>
+          <p class="cert-issuer">Coursera</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ── -->
+<section id="contact">
+  <div class="wrap">
+    <p class="section-label reveal" style="text-align:center">// 06 — Contact</p>
+    <h2 class="contact-title reveal">Let's work<br/><em style="font-family:var(--serif);font-style:italic;color:var(--accent)">together.</em></h2>
+    <p class="contact-sub reveal">Open to full-time roles, internships, and interesting data problems.</p>
+    <div class="contact-links reveal">
+      <a href="mailto:sushanthbuds@gmail.com" class="btn btn-primary">sushanthbuds@gmail.com</a>
+      <a href="https://linkedin.com/in/sushanth-buddhala-3357a5267" target="_blank" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://github.com/sushanthbuds" target="_blank" class="btn btn-ghost">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="wrap">
+    <p>Built by Sushanth Buddhala · Fairfax, VA · 2025 · All rights reserved</p>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
