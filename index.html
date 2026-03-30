@@ -57,7 +57,7 @@ section{padding:120px 56px;border-bottom:1px solid var(--border);position:relati
 .alink:hover{color:var(--accent);padding-left:8px;}
 .alink:first-child{border-top:1px solid var(--border);}
 .alink-key{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;}
-.sk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.sk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;align-items:stretch;}
 .skc{background:var(--surface);padding:28px;transition:background 0.3s;}
 .skc:hover{background:#141418;}
 .skc-title{font-size:11px;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;}
@@ -96,7 +96,7 @@ footer p{font-size:12px;color:var(--muted);}
 .reveal{opacity:0;transform:translateY(32px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1);}
 .reveal.visible{opacity:1;transform:translateY(0);}
 .reveal-delay-1{transition-delay:0.1s;}.reveal-delay-2{transition-delay:0.2s;}
-@media(max-width:768px){nav{padding:0 24px;}.nav-links{display:none;}#hero{padding:0 24px 56px;}section{padding:80px 24px;}.hero-bottom{grid-template-columns:1fr;}.hero-right{align-items:flex-start;}.about-cols{grid-template-columns:1fr;gap:36px;}.sk-grid{grid-template-columns:1fr 1fr;}.pj{grid-template-columns:1fr;}.pj::before{display:none;}footer{flex-direction:column;gap:12px;text-align:center;}#cursor,#cursor-ring{display:none;}body{cursor:auto;}}
+@media(max-width:768px){nav{padding:0 24px;}.nav-links{display:none;}#hero{padding:0 24px 56px;}section{padding:80px 24px;}.hero-bottom{grid-template-columns:1fr;}.hero-right{align-items:flex-start;}.about-cols{grid-template-columns:1fr;gap:36px;}.sk-grid{grid-template-columns:1fr;}.pj{grid-template-columns:1fr;}.pj::before{display:none;}footer{flex-direction:column;gap:12px;text-align:center;}#cursor,#cursor-ring{display:none;}body{cursor:auto;}}
 </style>
 </head>
 <body>
@@ -159,10 +159,10 @@ footer p{font-size:12px;color:var(--muted);}
     <p class="sl reveal">// Skills</p>
     <h2 class="st reveal">Technologies<br/><em>I work with</em></h2>
     <div class="sk-grid reveal">
-      <div class="skc"><p class="skc-title">Languages & Tools</p><div class="ski">Python</div><div class="ski">SQL</div><div class="ski">R</div><div class="ski">DAX</div><div class="ski">SQLite</div><div class="ski">Snowflake</div><div class="ski">Databricks</div><div class="ski">Relational Databases</div></div>
-      <div class="skc"><p class="skc-title">Data & ML</p><div class="ski">ETL Pipelines</div><div class="ski">Unsupervised Learning</div><div class="ski">Data Modeling</div><div class="ski">Statistical Analysis</div><div class="ski">Statistical Modeling</div><div class="ski">Data Storytelling</div><div class="ski">Data Cleaning</div></div>
-      <div class="skc"><p class="skc-title">Visualization & Cloud</p><div class="ski">Power BI</div><div class="ski">Tableau</div><div class="ski">AWS</div><div class="ski">Excel</div></div>
-      <div class="skc"><p class="skc-title">AI & NLP</p><div class="ski">RAG Pipelines</div><div class="ski">OpenAI Embeddings</div><div class="ski">FastAPI</div></div>
+      <div class="skc"><p class="skc-title">Languages & Tools</p><div class="ski">Python</div><div class="ski">SQL</div><div class="ski">R</div><div class="ski">DAX</div><div class="ski">FastAPI</div><div class="ski">Microsoft Excel</div></div>
+      <div class="skc"><p class="skc-title">Data & ML</p><div class="ski">Data Analysis</div><div class="ski">Data Modeling</div><div class="ski">Statistical Analysis</div><div class="ski">Data Cleaning</div><div class="ski">Data Storytelling</div><div class="ski">ETL Pipelines</div><div class="ski">Machine Learning</div><div class="ski">Unsupervised Learning</div><div class="ski">SQLite</div><div class="ski">Snowflake</div><div class="ski">Databricks</div><div class="ski">Relational Databases</div></div>
+      <div class="skc"><p class="skc-title">Visualization & Cloud</p><div class="ski">Power BI</div><div class="ski">Tableau</div><div class="ski">AWS</div></div>
+      <div class="skc"><p class="skc-title">AI & NLP</p><div class="ski">RAG Pipelines</div><div class="ski">OpenAI Embeddings</div></div>
     </div>
   </div>
 </section>
