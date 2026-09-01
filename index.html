@@ -38,10 +38,6 @@ nav.scrolled{background:rgba(9,9,11,0.88);backdrop-filter:blur(20px);border-bott
 .btn-primary-m:hover{background:#d4f8a8;}
 .btn-ghost-m{border:1px solid var(--border2);color:var(--text);}
 .btn-ghost-m:hover{background:rgba(255,255,255,0.05);}
-.hero-stats{display:flex;gap:36px;}
-.hstat{text-align:right;}
-.hstat-num{font-family:var(--serif);font-size:36px;color:var(--accent);line-height:1;display:block;}
-.hstat-label{font-size:11px;color:var(--muted);margin-top:3px;}
 section{padding:120px 56px;border-bottom:1px solid var(--border);position:relative;z-index:1;}
 .sw{max-width:1000px;margin:0 auto;}
 .sl{font-size:11px;color:var(--accent);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:16px;}
@@ -142,11 +138,6 @@ footer p{font-size:12px;color:var(--muted);}
           <a href="#projects" class="magnetic btn-primary-m">View Work →</a>
           <a href="mailto:sushanthbuds@gmail.com" class="magnetic btn-ghost-m">Get in Touch</a>
           <a href="Sushanth_Buddhala_s_Resume.pdf" class="magnetic btn-ghost-m" target="_blank" rel="noopener noreferrer">Resume ↓</a>
-        </div>
-        <div class="hero-stats">
-          <div class="hstat"><span class="hstat-num" data-target="95">0</span><span class="hstat-label">% Completion</span></div>
-          <div class="hstat"><span class="hstat-num" data-target="170">0</span><span class="hstat-label">Critical Dams</span></div>
-          <div class="hstat"><span class="hstat-num" data-target="3">0</span><span class="hstat-label">Certifications</span></div>
         </div>
       </div>
     </div>
@@ -285,14 +276,6 @@ window.addEventListener('scroll',()=>document.getElementById('navbar').classList
 /* Reveal */
 const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-/* Counters */
-function animCount(el){
-  const t=parseInt(el.dataset.target),d=1800,s=performance.now();
-  (function u(n){const p=Math.min((n-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*t);if(p<1)requestAnimationFrame(u);})(s);
-}
-const cobs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){animCount(x.target);cobs.unobserve(x.target);}}),{threshold:0.5});
-document.querySelectorAll('.hstat-num[data-target]').forEach(el=>cobs.observe(el));
 
 /* Magnetic */
 document.querySelectorAll('.magnetic').forEach(b=>{
