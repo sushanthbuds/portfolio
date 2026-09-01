@@ -82,6 +82,21 @@ section{padding:120px 56px;border-bottom:1px solid var(--border);position:relati
 .pj:hover .pt{border-color:rgba(200,240,154,0.2);color:rgba(200,240,154,0.7);}
 .pj-arrow{font-size:22px;color:var(--muted);transition:all 0.3s cubic-bezier(0.16,1,0.3,1);margin-top:4px;}
 .pj:hover .pj-arrow{color:var(--accent);transform:translate(6px,-6px);}
+.ex-item{padding:40px 0;border-bottom:1px solid var(--border);}
+.ex-item:first-child{border-top:1px solid var(--border);}
+.ex-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:8px;}
+.ex-company{font-family:var(--serif);font-size:24px;line-height:1.2;}
+.ex-date{font-size:12px;color:var(--muted);}
+.ex-role{font-size:14px;color:var(--accent);margin-bottom:18px;}
+.ex-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.ex-list li{font-size:14px;color:var(--muted);line-height:1.75;padding-left:16px;position:relative;}
+.ex-list li::before{content:'';position:absolute;left:0;top:10px;width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:0.6;}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+.edu-school{font-family:var(--serif);font-size:22px;margin-bottom:6px;line-height:1.25;}
+.edu-degree{font-size:14px;color:var(--accent);margin-bottom:14px;}
+.edu-courses{font-size:13px;color:var(--muted);line-height:1.75;}
+.cert-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:48px;}
+.cert{font-size:13px;padding:10px 16px;border-radius:100px;border:1px solid var(--border2);color:var(--muted);}
 #contact{border-bottom:none;text-align:center;padding-bottom:140px;}
 .ct-title{font-family:var(--serif);font-size:clamp(52px,9vw,110px);line-height:0.92;margin-bottom:28px;letter-spacing:-0.02em;}
 .ct-title em{font-style:italic;color:var(--accent);}
@@ -98,7 +113,7 @@ footer p{font-size:12px;color:var(--muted);}
 .reveal{opacity:0;transform:translateY(32px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1);}
 .reveal.visible{opacity:1;transform:translateY(0);}
 .reveal-delay-1{transition-delay:0.1s;}.reveal-delay-2{transition-delay:0.2s;}
-@media(max-width:768px){nav{padding:0 24px;}.nav-links{display:none;}#hero{padding:0 24px 56px;}section{padding:80px 24px;}.hero-bottom{grid-template-columns:1fr;}.hero-right{align-items:flex-start;}.about-cols{grid-template-columns:1fr;gap:36px;}.sk-grid{flex-direction:column;}.pj{grid-template-columns:1fr;}.pj::before{display:none;}footer{flex-direction:column;gap:12px;text-align:center;}#cursor,#cursor-ring{display:none;}body{cursor:auto;}}
+@media(max-width:768px){nav{padding:0 24px;}.nav-links{display:none;}#hero{padding:0 24px 56px;}section{padding:80px 24px;}.hero-bottom{grid-template-columns:1fr;}.hero-right{align-items:flex-start;}.about-cols{grid-template-columns:1fr;gap:36px;}.edu-grid{grid-template-columns:1fr;gap:36px;}.sk-grid{flex-direction:column;}.pj{grid-template-columns:1fr;}.pj::before{display:none;}footer{flex-direction:column;gap:12px;text-align:center;}#cursor,#cursor-ring{display:none;}body{cursor:auto;}}
 </style>
 </head>
 <body>
@@ -109,19 +124,19 @@ footer p{font-size:12px;color:var(--muted);}
 <nav id="navbar">
   <span class="nav-logo">Sushanth Buddhala.</span>
   <div class="nav-links">
-    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Work</a><a href="#contact">Contact</a>
+    <a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#projects">Work</a><a href="#education">Education</a><a href="#contact">Contact</a>
   </div>
 </nav>
 
 <section id="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow"><span class="hero-eyebrow-line"></span>Data Analytics Engineer · Open to roles</div>
+    <div class="hero-eyebrow"><span class="hero-eyebrow-line"></span>Data Analytics Engineer · Software Engineering Intern</div>
     <h1 class="hero-name">
       <span class="hero-name-line"><span>Sushanth</span></span>
       <span class="hero-name-line"><span>Buddhala.</span></span>
     </h1>
     <div class="hero-bottom">
-      <p class="hero-sub">Data Analytics Engineering graduate student with hands-on project experience building RAG pipelines, agentic AI workflows, and machine learning models. Skilled in Python, SQL, Power BI, and the OpenAI API, with a focus on designing prompt engineering workflows, implementing data validation, and translating complex datasets into actionable insights.</p>
+      <p class="hero-sub">Data Analytics Engineering graduate with hands-on internship experience in infrastructure automation and AI-powered retrieval systems, skilled in Python, SQL, Power BI, and computer networking fundamentals. Focused on prompt engineering, data validation, and translating complex datasets into actionable insights.</p>
       <div class="hero-right">
         <div class="hero-btns">
           <a href="#projects" class="magnetic btn-primary-m">View Work →</a>
@@ -129,8 +144,8 @@ footer p{font-size:12px;color:var(--muted);}
           <a href="Sushanth_Buddhala_s_Resume.pdf" class="magnetic btn-ghost-m" target="_blank" rel="noopener noreferrer">Resume ↓</a>
         </div>
         <div class="hero-stats">
-          <div class="hstat"><span class="hstat-num" data-target="395">0</span><span class="hstat-label">K+ Records</span></div>
-          <div class="hstat"><span class="hstat-num" data-target="85">0</span><span class="hstat-label">% Accuracy</span></div>
+          <div class="hstat"><span class="hstat-num" data-target="95">0</span><span class="hstat-label">% Completion</span></div>
+          <div class="hstat"><span class="hstat-num" data-target="170">0</span><span class="hstat-label">Critical Dams</span></div>
           <div class="hstat"><span class="hstat-num" data-target="3">0</span><span class="hstat-label">Certifications</span></div>
         </div>
       </div>
@@ -143,7 +158,7 @@ footer p{font-size:12px;color:var(--muted);}
     <p class="sl reveal">// About</p>
     <h2 class="st reveal">Building systems that<br/><em>scale and explain.</em></h2>
     <div class="about-cols">
-      <div class="reveal reveal-delay-1"><p class="ap">I'm a <strong>Data Analytics Engineering graduate student at George Mason University</strong>, building SQL-driven analytics platforms, ETL pipelines, machine learning models, and RAG systems.</p><p class="ap">I specialize in <strong>Python, SQL, and cloud tools</strong> — delivering explainable, scalable analytics that non-technical users can act on.</p><p class="ap">Previously completed a <strong>B.S. in Computer Science Engineering</strong> at GRIET, Hyderabad, India.</p></div>
+      <div class="reveal reveal-delay-1"><p class="ap">I'm a <strong>Data Analytics Engineering graduate from George Mason University</strong> and currently a <strong>Software Engineering Intern at Apposite Technologies</strong>, building infrastructure automation, SQL-driven analytics platforms, ETL pipelines, and RAG systems.</p><p class="ap">I specialize in <strong>Python, SQL, and cloud tools</strong> — delivering explainable, scalable analytics that non-technical users can act on.</p><p class="ap">Previously completed a <strong>B.S. in Computer Science Engineering</strong> at GRIET, Hyderabad, India.</p></div>
       <div class="reveal reveal-delay-2">
         <div class="alinks">
           <a href="mailto:sushanthbuds@gmail.com" class="alink"><span class="alink-key">Email</span><span>sushanthbuds@gmail.com ↗</span></a>
@@ -158,21 +173,40 @@ footer p{font-size:12px;color:var(--muted);}
   </div>
 </section>
 
+<section id="experience">
+  <div class="sw">
+    <p class="sl reveal">// Experience</p>
+    <h2 class="st reveal">Where I've<br/><em>been working</em></h2>
+    <div class="ex-item reveal">
+      <div class="ex-top">
+        <h3 class="ex-company">Apposite Technologies LLC</h3>
+        <span class="ex-date">Jul 2026 – Current</span>
+      </div>
+      <p class="ex-role">Software Engineering Intern</p>
+      <ul class="ex-list">
+        <li>Developing a CLI automation tool to provision network emulator virtual environments across three deployment targets: QEMU/KVM, VMware ESXi, and AWS.</li>
+        <li>Implementing infrastructure provisioning logic in Python with OpenTofu/Terraform, and configuring VM initialization using cloud-init and JSON-based config files.</li>
+        <li>Collaborating directly with Apposite's engineering team through kickoff and recurring print check-ins to scope provisioning workflows and requirements.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <section id="skills">
   <div class="sw">
     <p class="sl reveal">// Skills</p>
     <h2 class="st reveal">Technologies<br/><em>I work with</em></h2>
     <div class="sk-grid reveal">
       <div class="sk-col">
-        <div class="skc"><p class="skc-title">Languages</p><div class="ski">Python</div><div class="ski">SQL</div><div class="ski">DAX</div></div>
+        <div class="skc"><p class="skc-title">Languages & OS</p><div class="ski">Python</div><div class="ski">SQL</div><div class="ski">DAX</div><div class="ski">Linux</div><div class="ski">Windows</div></div>
         <div class="skc"><p class="skc-title">Frameworks & Libraries</p><div class="ski">Pydantic</div><div class="ski">Streamlit</div><div class="ski">FastAPI</div><div class="ski">Pytest</div><div class="ski">Pandas</div><div class="ski">NumPy</div><div class="ski">Plotly</div><div class="ski">Scikit-learn</div><div class="ski">Tenacity</div></div>
       </div>
       <div class="sk-col">
-        <div class="skc"><p class="skc-title">Databases & Platforms</p><div class="ski">SAP</div><div class="ski">Microsoft Excel</div><div class="ski">DuckDB</div><div class="ski">SQLite</div><div class="ski">AWS</div><div class="ski">Cursor AI</div><div class="ski">Snowflake</div><div class="ski">Power BI</div></div>
+        <div class="skc"><p class="skc-title">Databases & Platforms</p><div class="ski">Microsoft Excel</div><div class="ski">DuckDB</div><div class="ski">SQLite</div><div class="ski">AWS</div><div class="ski">Cursor AI</div><div class="ski">Snowflake</div><div class="ski">Power BI</div><div class="ski">Databricks</div><div class="ski">Microsoft Power Query</div></div>
         <div class="skc"><p class="skc-title">Data & ML</p><div class="ski">Data Analysis</div><div class="ski">Data Modeling</div><div class="ski">Data Warehousing</div><div class="ski">Data Pipelines</div><div class="ski">ETL Pipelines</div><div class="ski">Statistical Analysis</div><div class="ski">Machine Learning</div><div class="ski">Unsupervised Learning</div></div>
       </div>
       <div class="sk-col">
-        <div class="skc"><p class="skc-title">AI & LLM</p><div class="ski">Gemini API</div><div class="ski">OpenAI API</div><div class="ski">Function Calling</div><div class="ski">Prompt Engineering</div><div class="ski">Multi-Agent Systems</div><div class="ski">Workflow Orchestration</div><div class="ski">Model Evaluation</div><div class="ski">RAG Pipelines</div></div>
+        <div class="skc"><p class="skc-title">AI & LLM</p><div class="ski">Gemini API</div><div class="ski">OpenAI API</div><div class="ski">Function Calling</div><div class="ski">Prompt Engineering</div><div class="ski">Multi-Agent Systems</div><div class="ski">Workflow Orchestration</div><div class="ski">Model Evaluation</div><div class="ski">RAG Pipelines</div><div class="ski">Generative AI</div></div>
       </div>
     </div>
   </div>
@@ -184,17 +218,37 @@ footer p{font-size:12px;color:var(--muted);}
     <h2 class="st reveal">Things<br/><em>I've built</em></h2>
     <div class="pj-list">
       <a href="https://github.com/sushanthbuds" target="_blank" class="pj reveal">
-        <div><div class="pj-meta"><span class="pj-num">01.</span><span class="pj-date">Feb 2026 – May 2026</span></div><h3 class="pj-title">Compass – Agentic Multi-Agent Retail Analytics System</h3><p class="pj-desc">Architected a 5-agent system (Planner, Data, Product, Supply Chain, Synthesizer) on a DuckDB warehouse with 25K orders. Built a hybrid Gemini Flash/Pro fallback strategy and a 40-case eval harness with 4-dimensional scoring, achieving 95% completion and 95.2% correctness.</p></div>
+        <div><div class="pj-meta"><span class="pj-num">01.</span><span class="pj-date">Feb 2026 – May 2026</span></div><h3 class="pj-title">Compass – Agentic Multi-Agent Retail Analytics System</h3><p class="pj-desc">Architected a 5-agent system (Planner, Data, Product, Supply Chain, Synthesizer) in Python using Gemini API function calling and a Pydantic orchestrator on DuckDB. Built column synonym normalization, a hybrid Flash/Pro fallback strategy, and a Streamlit chat UI with Plotly charts. Designed a 40-case eval harness with 4-dimensional scoring, reaching 95% completion and 95.2% correctness.</p><div class="pj-tags"><span class="pt">Python</span><span class="pt">Gemini API</span><span class="pt">DuckDB</span><span class="pt">Streamlit</span><span class="pt">Pytest</span></div></div>
         <div class="pj-arrow">↗</div>
       </a>
       <a href="https://github.com/sushanthbuds" target="_blank" class="pj reveal reveal-delay-1">
-        <div><div class="pj-meta"><span class="pj-num">02.</span><span class="pj-date">Jan 2026 – May 2026</span></div><h3 class="pj-title">SARRDI – Dam Infrastructure Risk Analytics</h3><p class="pj-desc">Built a 5-step geospatial ETL pipeline integrating 5 public datasets across 2,712 Virginia dams using Python and GeoPandas. Designed a rule-based risk scoring model across 5 weighted dimensions, flagging 170 critical dams. Delivered a Power BI dashboard supporting evidence-based infrastructure decisions for Virginia DCR.</p></div>
+        <div><div class="pj-meta"><span class="pj-num">02.</span><span class="pj-date">Jan 2026 – May 2026</span></div><h3 class="pj-title">SARRDI – Dam Infrastructure Risk Analytics</h3><p class="pj-desc">Engineered an ETL pipeline for Virginia DCR, integrating inspection, flood, and social vulnerability data across 2,712 dams via fuzzy matching and watershed-level joins. Built a 5-dimension weighted risk-scoring model and Power BI/DAX dashboard under GMU's STAR-TIDES Program, flagging 170 dams as critical priority. Delivered field-ready decision support with zero change requests.</p><div class="pj-tags"><span class="pt">ETL</span><span class="pt">Power BI</span><span class="pt">DAX</span><span class="pt">Python</span></div></div>
         <div class="pj-arrow">↗</div>
       </a>
-      <a href="https://github.com/sushanthbuds" target="_blank" class="pj reveal reveal-delay-2">
-        <div><div class="pj-meta"><span class="pj-num">03.</span><span class="pj-date">Nov 2025 – Jan 2026</span></div><h3 class="pj-title">Housing Migration Analytics Platform</h3><p class="pj-desc">Designed a normalized SQLite analytics database containing 395K+ U.S. housing, migration, AHS, and CHAS records. Built a schema-aware RAG pipeline using OpenAI embeddings to generate safe, explainable SQL for non-technical users, with schema validation guardrails preventing hallucinations and destructive queries.</p></div>
-        <div class="pj-arrow">↗</div>
-      </a>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="sw">
+    <p class="sl reveal">// Education</p>
+    <h2 class="st reveal">Schooling &amp;<br/><em>certificates</em></h2>
+    <div class="edu-grid">
+      <div class="reveal reveal-delay-1">
+        <h3 class="edu-school">George Mason University</h3>
+        <p class="edu-degree">M.S. in Data Analytics Engineering</p>
+        <p class="edu-courses">Analytics &amp; Big Data · Intro to Analytics &amp; Modeling · Principles of Data Management &amp; Mining · Visualization for Analytics · Big Data Essentials · Data Mining for Business Analytics · Interpretable Machine Learning · Data Analytics Project</p>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <h3 class="edu-school">Gokaraju Rangaraju Institute of Engineering and Technology</h3>
+        <p class="edu-degree">B.S. in Computer Science Engineering</p>
+        <p class="edu-courses">Computer Networks · Database Management System · Python Programming · Artificial Intelligence · Machine Learning · Big Data Analytics · Cloud Computing · Data Warehousing and Data Mining</p>
+      </div>
+    </div>
+    <div class="cert-row reveal">
+      <span class="cert">IBM Data Analyst Professional Certificate</span>
+      <span class="cert">AWS Academy Graduate — Cloud Foundation</span>
+      <span class="cert">Generative AI for Data Analytics</span>
     </div>
   </div>
 </section>
@@ -215,7 +269,7 @@ footer p{font-size:12px;color:var(--muted);}
 <footer>
   <p>Designed & built by Sushanth Buddhala</p>
   <div class="footer-dot"></div>
-  <p>© 2025 · San Ramon, California</p>
+  <p>© 2026 · San Ramon, California</p>
 </footer>
 
 <script>
